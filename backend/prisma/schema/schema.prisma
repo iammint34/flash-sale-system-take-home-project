@@ -1,0 +1,9 @@
+// multi-file schema (prisma/schema/*.prisma) — one model per file
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma 7: connection url lives in prisma.config.ts (cli) + the client's driver adapter (runtime)
+datasource db {
+  provider = "postgresql"
+}

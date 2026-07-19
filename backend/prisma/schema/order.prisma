@@ -1,0 +1,18 @@
+model Order {
+  id        String      @id @default(uuid())
+  saleId    String      @map("sale_id")
+  userId    String      @map("user_id")
+  status    OrderStatus @default(reserved)
+  createdAt DateTime    @default(now()) @map("created_at")
+
+  sale Sale @relation(fields: [saleId], references: [id])
+
+  // durable one-item-per-user guard, independent of the redis gate
+  @@unique([saleId, userId])
+  @@map("orders")
+}
+
+enum OrderStatus {
+  reserved
+  confirmed
+}

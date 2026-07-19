@@ -1,0 +1,9 @@
+// durable backstop counter — authoritative real-time count lives in redis
+model Inventory {
+  saleId    String @id @map("sale_id")
+  remaining Int
+
+  sale Sale @relation(fields: [saleId], references: [id])
+
+  @@map("inventory")
+}

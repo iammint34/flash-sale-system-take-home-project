@@ -1,0 +1,9 @@
+model Product {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  sales Sale[]
+
+  @@map("products")
+}
